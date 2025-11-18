@@ -1,0 +1,104 @@
+{
+  "puppet_task_version": 1,
+  "supports_noop": false,
+  "description": "Execute the entire Ansible role imperatively",
+  "input_method": "environment",
+  "parameters": {
+    "ansible_managed": {
+      "description": "",
+      "type": "Optional[String]"
+    },
+    "memcached_threads": {
+      "description": "Ansible role variable (default: 4)",
+      "type": "Optional[Integer]"
+    },
+    "memcached_log_file": {
+      "description": "Ansible role variable (default: /var/log/memcached.log)",
+      "type": "Optional[String]"
+    },
+    "memcached_log_verbosity": {
+      "description": "Ansible role variable (default: )",
+      "type": "Optional[String]"
+    },
+    "memcached_memory_limit": {
+      "description": "Ansible role variable (default: 64)",
+      "type": "Optional[Integer]"
+    },
+    "memcached_port": {
+      "description": "Ansible role variable (default: 11211)",
+      "type": "Optional[Integer]"
+    },
+    "memcached_user": {
+      "description": "",
+      "type": "Optional[String]"
+    },
+    "memcached_listen_ip": {
+      "description": "Ansible role variable (default: 127.0.0.1)",
+      "type": "Optional[String]"
+    },
+    "ip": {
+      "description": "",
+      "type": "Optional[String]"
+    },
+    "memcached_connections": {
+      "description": "Ansible role variable (default: 1024)",
+      "type": "Optional[Integer]"
+    },
+    "memcached_max_item_size": {
+      "description": "Ansible role variable (default: 1m)",
+      "type": "Optional[String]"
+    },
+    "par_tags": {
+      "description": "An array of Ansible tags to execute (optional)",
+      "type": "Optional[Array[String]]"
+    },
+    "par_skip_tags": {
+      "description": "An array of Ansible tags to skip (optional)",
+      "type": "Optional[Array[String]]"
+    },
+    "par_start_at_task": {
+      "description": "The name of the task to start execution at (optional)",
+      "type": "Optional[String]"
+    },
+    "par_limit": {
+      "description": "Limit playbook execution to specific hosts (optional)",
+      "type": "Optional[String]"
+    },
+    "par_verbose": {
+      "description": "Enable verbose output from Ansible (optional)",
+      "type": "Optional[Boolean]"
+    },
+    "par_check_mode": {
+      "description": "Run Ansible in check mode (dry-run) (optional)",
+      "type": "Optional[Boolean]"
+    },
+    "par_timeout": {
+      "description": "Timeout in seconds for playbook execution (optional)",
+      "type": "Optional[Integer]"
+    },
+    "par_user": {
+      "description": "Remote user to use for Ansible connections (optional)",
+      "type": "Optional[String]"
+    },
+    "par_env_vars": {
+      "description": "Additional environment variables for ansible-playbook execution (optional)",
+      "type": "Optional[Hash]"
+    }
+  },
+  "implementations": [
+    {
+      "name": "paw_ansible_role_memcached.sh",
+      "requirements": [
+        "shell"
+      ],
+      "input_method": "environment"
+    },
+    {
+      "name": "paw_ansible_role_memcached.ps1",
+      "requirements": [
+        "powershell"
+      ],
+      "input_method": "environment"
+    }
+  ]
+}

@@ -52,38 +52,38 @@ class paw_ansible_role_memcached (
 # Execute the Ansible role using PAR (Puppet Ansible Runner)
 # Playbook synced via pluginsync to agent's cache directory
 # Check for common paw::par_vardir setting, then module-specific, then default
-  $_par_vardir = $par_vardir ? {
-    undef   => lookup('paw::par_vardir', Stdlib::Absolutepath, 'first', '/opt/puppetlabs/puppet/cache'),
-    default => $par_vardir,
-  }
-  $playbook_path = "${_par_vardir}/lib/puppet_x/ansible_modules/ansible_role_memcached/playbook.yml"
+$_par_vardir = $par_vardir ? {
+  undef   => lookup('paw::par_vardir', Stdlib::Absolutepath, 'first', '/opt/puppetlabs/puppet/cache'),
+  default => $par_vardir,
+}
+$playbook_path = "${_par_vardir}/lib/puppet_x/ansible_modules/ansible_role_memcached/playbook.yml"
 
-  par { 'paw_ansible_role_memcached-main':
-    ensure        => present,
-    playbook      => $playbook_path,
-    playbook_vars => {
-      'ansible_managed'         => $ansible_managed,
-      'memcached_threads'       => $memcached_threads,
-      'memcached_log_file'      => $memcached_log_file,
-      'memcached_log_verbosity' => $memcached_log_verbosity,
-      'memcached_memory_limit'  => $memcached_memory_limit,
-      'memcached_port'          => $memcached_port,
-      'memcached_user'          => $memcached_user,
-      'memcached_listen_ip'     => $memcached_listen_ip,
-      'ip'                      => $ip,
-      'memcached_connections'   => $memcached_connections,
-      'memcached_max_item_size' => $memcached_max_item_size,
-    },
-    tags          => $par_tags,
-    skip_tags     => $par_skip_tags,
-    start_at_task => $par_start_at_task,
-    limit         => $par_limit,
-    verbose       => $par_verbose,
-    check_mode    => $par_check_mode,
-    timeout       => $par_timeout,
-    user          => $par_user,
-    env_vars      => $par_env_vars,
-    logoutput     => $par_logoutput,
-    exclusive     => $par_exclusive,
-  }
+par { 'paw_ansible_role_memcached-main':
+  ensure        => present,
+  playbook      => $playbook_path,
+  playbook_vars => {
+        'ansible_managed' => $ansible_managed,
+        'memcached_threads' => $memcached_threads,
+        'memcached_log_file' => $memcached_log_file,
+        'memcached_log_verbosity' => $memcached_log_verbosity,
+        'memcached_memory_limit' => $memcached_memory_limit,
+        'memcached_port' => $memcached_port,
+        'memcached_user' => $memcached_user,
+        'memcached_listen_ip' => $memcached_listen_ip,
+        'ip' => $ip,
+        'memcached_connections' => $memcached_connections,
+        'memcached_max_item_size' => $memcached_max_item_size
+              },
+  tags          => $par_tags,
+  skip_tags     => $par_skip_tags,
+  start_at_task => $par_start_at_task,
+  limit         => $par_limit,
+  verbose       => $par_verbose,
+  check_mode    => $par_check_mode,
+  timeout       => $par_timeout,
+  user          => $par_user,
+  env_vars      => $par_env_vars,
+  logoutput     => $par_logoutput,
+  exclusive     => $par_exclusive,
+}
 }
